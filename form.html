@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Form with Radio & Checkbox</title>
+</head>
+<body>
+    <h2>Contact Us</h2>
+    <form action="#" method="post">
+      
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+        
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="Male" required>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="Other">
+        <label for="other">Other</label><br><br>
+
+     
+        <label>Interests:</label><br>
+        <input type="checkbox" id="coding" name="interest" value="Coding">
+        <label for="coding">Coding</label><br>
+        <input type="checkbox" id="music" name="interest" value="Music">
+        <label for="music">Music</label><br>
+        <input type="checkbox" id="sports" name="interest" value="Sports">
+        <label for="sports">Sports</label><br><br>
+
+    
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="5" cols="30" placeholder="Enter your message"></textarea><br><br>
+
+      
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
