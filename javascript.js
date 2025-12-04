@@ -88,7 +88,7 @@ console.log(x);                            //hoisting is only possible with var 
  */
 
 
- //--------------------  NAMED FUNCTION EXPRESSION---------------------
+ //--------------------  ANONYMOUS FUNCTION EXPRESSION---------------------
 
 
 /* let greet=function(){                              //any keyword can be used to assign name to function
@@ -97,6 +97,151 @@ console.log(x);                            //hoisting is only possible with var 
 greet(); */
 
 
- //--------------------  ANONYMOUS FUNCTION EXPRESSION---------------------
+ //--------------------  NAMED FUNCTION EXPRESSION---------------------
+
+
+/* let greet=function greeting(){                              //any keyword can be used to assign name to function
+    console.log("hello world");
+}
+greet(); */
+
+//------------------CALLBACK FUNCTIONS---------------------------
+
+/* function process(callback){
+    console.log("processing");                 //function passed as an argument for another function  is called as callback function
+    callback();
+}
+function done(){
+    console.log("task completed");
+}
+process(done);
+ */
+
+
+//-------------------------HIGHER ORDER FUNCTIONS--------------------
+
+/* function highorder(func){
+    console.log("processing");             //function which recieves another function as an argument is called higher order function
+    func();
+}
+function done(){
+    console.log("task completed");
+}
+highorder(done);
+ */
+
+
+
+//--------------ARROW FUNCTION---------------------
+
+
+//normal function
+/* const greet=function(name){
+    return "hello"+ name;                     //ex1
+}
+//aroow function
+const greetName=(name)=>{
+    return "hello"+ name;
+}
+
+console.log(greet("oviya"));
+console.log(greetName("oviya"));  */
+                                                           
+/* let add=(a,b)=>a+b;
+console.log(add(2,3));                              //ex2
+                                                    //any keyword can be given
+let square=(a)=>a*a;
+console.log(square(2)); 
+ */
+
+
+//---------------------ARRAYS---------------             --------METHODS-------------------------------
+
+/* const fruits=["mango","banana","orange"];
+console.log(fruits);
+const Newfruits=fruits.push("grapes");         //push method will return the updated length of the array-push()-add to an end
+console.log(Newfruits);                       //unshift()-add to the beginning                    
+console.log(fruits.length);                   //pop()-remove from an end                 
+                                               //shift()-remove from the beginning 
+ */
+
+//----------------------SLICING--------------SHALLOW COPY ----------NEW ARRAY WILL BE CRAETED FOR THE CHANGES-----------------------ORIGINAL ARRY WILL GET AFFECTED -----------------------
+
+
+/* let fruits=["mango","banana","orange","grapes","kiwi"];
+let citrus=fruits.slice(1,4);
+console.log(citrus);
+console.log(fruits);
+let lasttwo=fruits.slice(-2);
+console.log(lasttwo); */
+
+
+//---------------------------SPLICING-------------it will modify the original array--------------
+
+/* 
+let fruits=["mango","banana","orange","grapes","kiwi"];
+let removed=fruits.splice(1, 2);
+console.log(removed);                         //indexOf(),lastIndexOf(),if not found=-1===return index
+console.log(fruits);                        //includes()=====return boolean value(true/false)
+fruits.splice(1, 0, "papaya");              
+console.log(fruits); */
+
+
+
+//find()-return the first and foremost elemnt according to the condition given
+/* let num=[1,4,7,12,150];
+let found=num.find((element)=>element>10);
+console.log(found); */
+
+
+
+ //map()-return another array with same length
+/*
+ let num = [1, 4, 7, 12, 150];
+let result = num.map(element => {
+    return element > 10 ? element : null;
+});
+console.log(result); */
+
+
+
+//printing even numnbers usind find
+
+/* let num = [1, 3, 4, 7, 10, 15];
+let firstEven = num.find(element => element % 2 === 0);
+console.log(firstEven); */
+
+//printing even numnbers usind map
+
+/* let num = [1, 3, 4, 7, 10, 15];
+
+let evenMap = num.map(element => {
+    return element % 2 === 0 ? element : null;
+});
+
+console.log(evenMap); */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
