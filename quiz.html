@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pastel JS Quiz</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-blue-50 to-purple-50">
+
+  <div class="w-full max-w-lg bg-white/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-white/40" id="quizBox">
+
+    <h1 class="text-2xl font-bold text-gray-800 text-center">Simple JS Quiz</h1>
+    <p id="qNo" class="text-sm text-gray-500 mt-1 text-center"></p>
+
+    <div class="mt-6">
+      <h2 id="questionText" class="text-gray-700 font-medium mb-4"></h2>
+
+      <div id="optionsBox" class="space-y-3">
+        <!-- Options are inserted here by JavaScript -->
+      </div>
+
+      <div class="mt-6 text-right">
+        <button id="nextBtn"
+          class="px-6 py-2 rounded-xl bg-indigo-300 hover:bg-indigo-400 text-white font-semibold transition">
+          Next
+        </button>
+        <button id="submitBtn"
+          class="px-6 py-2 rounded-xl bg-green-400 hover:bg-green-500 text-white font-semibold transition hidden">
+          Submit
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript Quiz Logic -->
+  <script>
+    const quizData = [
+      { q: "Which keyword declares a constant in JavaScript?", options: ["var", "let", "const", "static"], ans: 2 },
+      { q: "Which company created JavaScript?", options: ["Google", "Netscape", "Microsoft", "Apple"], ans: 1 },
+      { q: "Inside which HTML tag do we write JavaScript?", options: ["<script>", "<javascript>", "<js>", "<code>"], ans: 0 },
+      { q: "What does DOM stand for?", options: ["Document Object Model", "Data Object Method", "Digital Ordinance Model", "Desktop Object Manager"], ans: 0 },
+      { q: "Which method prints output to the console?", options: ["print()", "log()", "console.log()", "output()"], ans: 2 },
+      { q: "Which symbol is used for comments in JS?", options: ["//", "/* */", "#", "<!-- -->"], ans: 0 },
+      { q: "Which operator is used to assign a value?", options: ["=", "==", "===", ":"], ans: 0 },
+      { q: "JavaScript is a ___ language.", options: ["Compiled", "Markup", "Scripting", "Database"], ans: 2 },
+      { q: "Which array method adds an item to the end?", options: ["push()", "pop()", "shift()", "insert()"], ans: 0 },
+      { q: "Which keyword declares a block-scoped variable?", options: ["var", "const", "static", "define"], ans: 1 }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+    let selectedOption = null;
+
+    const qNo = document.getElementById("qNo");
+    const questionText = document.getElementById("questionText");
+    const optionsBox = document.getElementById("optionsBox");
+    const nextBtn = document.getElementById("nextBtn");
+    const submitBtn = document.getElementById("submitBtn");
+    const quizBox = document.getElementById("quizBox");
+
+    function loadQuestion() {
+      selectedOption = null;
+
+      qNo.innerText = `Question ${currentQ + 1} of ${quizData.length}`;
+      questionText.innerText = quizData[currentQ].q;
+
+      optionsBox.innerHTML = "";
+      quizData[currentQ].options.forEach((opt, index) => {
+        const btn = document.createElement("button");
+        btn.className = "w-full p-3 rounded-xl bg-blue-100 hover:bg-blue-200 border border-blue-200 text-gray-700 transition";
+        btn.innerText = opt;
+
+        btn.onclick = () => {
+          selectedOption = index;
+
+          // highlight selected
+          document.querySelectorAll("#optionsBox button")
+            .forEach(b => b.classList.remove("bg-blue-300"));
+
+          btn.classList.add("bg-blue-300");
+        }
+
+        optionsBox.appendChild(btn);
+      });
+
+      if (currentQ === quizData.length - 1) {
+        nextBtn.classList.add("hidden");
+        submitBtn.classList.remove("hidden");
+      } else {
+        nextBtn.classList.remove("hidden");
+        submitBtn.classList.add("hidden");
+      }
+    }
+
+    nextBtn.onclick = () => {
+      if (selectedOption === null) {
+        alert("Please select an option!");
+        return;
+      }
+
+      if (selectedOption === quizData[currentQ].ans) score++;
+
+      currentQ++;
+      loadQuestion();
+    };
+
+    submitBtn.onclick = () => {
+      if (selectedOption === quizData[currentQ].ans) score++;
+
+      quizBox.innerHTML = `
+        <h1 class="text-3xl font-bold text-gray-800 text-center">Quiz Completed!</h1>
+        <p class="text-xl text-center mt-4 text-purple-600">
+          ⭐ Your Score: ${score} / ${quizData.length}
+        </p>
+        <p class="mt-2 text-center text-gray-600">
+          Great job, Oviya! 🎉
+        </p>
+      `;
+    };
+
+    loadQuestion();
+  </script>
+
+</body>
+
+</html>
