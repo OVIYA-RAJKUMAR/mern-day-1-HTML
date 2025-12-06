@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - LuminaVibe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'peach': '#FFE4E1',
+                        'mint': '#E0F2FE',
+                        'lavender': '#F3E8FF'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-effect { backdrop-filter: blur(16px); background: rgba(255,255,255,0.92); }
+        #map { height: 400px; border-radius: 24px; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-peach via-mint to-lavender min-h-screen font-sans">
+
+    <!-- Header -->
+    <header class="glass-effect sticky top-0 z-50 shadow-2xl border-b border-white/50">
+        <!-- Same header as other pages -->
+        <nav class="container mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-14 h-14 bg-gradient-to-r from-rose-400 to-pink-500 rounded-3xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-sparkles text-white text-2xl"></i>
+                </div>
+                <span class="text-3xl font-black bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">LuminaVibe</span>
+            </div>
+            <ul class="hidden xl:flex items-center space-x-10 text-lg font-semibold">
+                <li><a href="index.html" class="text-gray-700 hover:text-rose-500 transition-all">Home</a></li>
+                <li><a href="shop.html" class="text-gray-700 hover:text-rose-500 transition-all">Shop</a></li>
+                <li><a href="featured.html" class="text-gray-700 hover:text-emerald-500 transition-all">Featured</a></li>
+                <li><a href="about.html" class="text-gray-700 hover:text-purple-500 transition-all">About</a></li>
+                <li><a href="contact.html" class="text-gray-800 hover:text-blue-500 font-bold transition-all">Contact</a></li>
+            </ul>
+            <div class="flex items-center space-x-6">
+                <div class="relative group"><i class="fas fa-search text-2xl text-gray-600 hover:text-rose-500 cursor-pointer p-3 transition-all"></i></div>
+                <div class="relative"><a href="#" class="relative p-3"><i class="fas fa-heart text-2xl text-gray-600 hover:text-pink-500"></i><span class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center">8</span></a></div>
+                <div class="relative"><a href="#" class="relative p-3"><i class="fas fa-shopping-cart text-2xl text-gray-600 hover:text-emerald-500"></i><span class="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center">12</span></a></div>
+                <button class="bg-gradient-to-r from-rose-500 to-pink-600 text-white px-8 py-3 rounded-2xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all">Sign In</button>
+            </div>
+            <button class="xl:hidden p-2" id="mobile-menu-btn"><i class="fas fa-bars text-2xl text-gray-700"></i></button>
+        </nav>
+    </header>
+
+    <!-- Contact Hero -->
+    <section class="py-32 bg-gradient-to-r from-blue-500/20 to-emerald-500/20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-6xl md:text-8xl font-black text-gray-900 mb-6 bg-gradient-to-r from-blue-600 to-emerald-600 bg-clip-text text-transparent">Get In Touch</h1>
+            <p class="text-2xl text-gray-700 max-w-3xl mx-auto">We're here to help. Contact us anytime.</p>
+        </div>
+    </section>
+
+    <!-- Contact Info & Form -->
+    <section class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <!-- Contact Info -->
+                <div class="space-y-12">
+                    <div class="group">
+                        <div class="flex items-center mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-3xl flex items-center justify-center text-2xl text-white shadow-2xl group-hover:scale-110 transition-transform mr-6">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Phone Support</h3>
+                                <p class="text-xl text-gray-700">+1 (555) 123-4567</p>
+                                <p class="text-sm text-gray-500">24/7 Available</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group">
+                        <div class="flex items-center mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-r from-rose-500 to-pink-500 rounded-3xl flex items-center justify-center text-2xl text-white shadow-2xl group-hover:scale-110 transition-transform mr-6">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Email Us</h3>
+                                <p class="text-xl text-gray-700">hello@luminavibe.com</p>
+                                <p class="text-sm text-gray-500">Response within 24h</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group">
+                        <div class="flex items-center mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-3xl flex items-center justify-center text-2xl text-white shadow-2xl group-hover:scale-110 transition-transform mr-6">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Visit Us</h3>
+                                <p class="text-xl text-gray-700">123 Premium St, NY 10001</p>
+                                <p class="text-sm text-gray-500">Mon-Fri 9AM-6PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-4xl p-12 shadow-2xl border border-white/50">
+                    <h3 class="text-3xl font-black text-gray-900 mb-8">Send Message</h3>
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <input type="text" placeholder="Your Name" class="w-full px-6 py-5 rounded-3xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none text-lg">
+                            <input type="email" placeholder="Your Email" class="w-full px-6 py-5 rounded-3xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none text-lg">
+                        </div>
+                        <input type="text" placeholder="Subject" class="w-full px-6 py-5 rounded-3xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none text-lg">
+                        <textarea rows="6" placeholder="Your Message" class="w-full px-6 py-5 rounded-3xl border-2 border-gray-200 focus:border-rose-500 focus:outline-none text-lg resize-none"></textarea>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-emerald-600 text-white py-6 rounded-3xl font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-24 bg-white/30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black text-gray-900 mb-6">Find Us</h2>
+                <p class="text-xl text-gray-700">Our global headquarters</p>
+            </div>
+            <div id="map" class="w-full mx-auto max-w-6xl"></div>
+        </div>
+    </section>
+
+    <!-- Support Hours -->
+    <section class="py-24 bg-gradient-to-r from-blue-500/20 to-emerald-500/20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-black text-gray-900 mb-8">Support Availability</h2>
+            <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                <div>
+                    <div class="text-5xl font-black text-emerald-600 mb-4">24/7</div>
+                    <p class="text-2xl text-gray-700">Live Chat Support</p>
+                </div>
+                <div>
+                    <div class="text-5xl font-black text-blue-600 mb-4">15 min</div>
+                    <p class="text-2xl text-gray-700">Average Response Time</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as other pages) -->
+    <footer class="bg-gradient-to-r from-gray-900 to-black text-white py-20">
+        <!-- Same footer content as above -->
+    </footer>
+
+    <!-- Leaflet JS for Map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize Map
+        const map = L.map('map').setView([40.7128, -74.0060], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        L.marker([40.7128, -74.0060]).addTo(map)
+            .bindPopup('LuminaVibe HQ')
+            .openPopup();
+
+        // Mobile menu
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('flex-col');
+        });
+    </script>
+</body>
+</html>
